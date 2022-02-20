@@ -25,6 +25,9 @@
 <script src="{{asset('backend/plugins/raphael/raphael.min.js')}}"></script>
 <script src="{{asset('backend/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
 <script src="{{asset('backend/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+
+{{-- Summernote --}}
+<script src="{{asset('backend/assets/summer/summernote.js')}}"></script>
 <!-- ChartJS -->
 <script src="{{asset('backend/plugins/chart.js/Chart.min.js')}}"></script>
 

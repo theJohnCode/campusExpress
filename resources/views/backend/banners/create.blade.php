@@ -43,7 +43,7 @@
                       <!-- textarea -->
                       <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" name="description" placeholder="Enter ...">{{old('description')}}</textarea>
+                        <textarea id="description" class="form-control" name="description" placeholder="Enter ...">{{old('description')}}</textarea>
                       </div>
                     </div>
                     
@@ -110,5 +110,9 @@
 <script>
   $('#lfm').filemanager('image');
 </script>
-
+<script>
+  $(document).ready(function() {
+  $('#description').summernote();
+});
+</script>
 @endsection
