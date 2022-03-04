@@ -28,6 +28,8 @@
 
 {{-- Summernote --}}
 <script src="{{asset('backend/assets/summer/summernote.js')}}"></script>
+{{-- Bootstrap Switch Button --}}
+<script src="{{asset('backend/assets/switch-button-bootstrap/src/bootstrap-switch-button.js')}}"></script>
 <!-- ChartJS -->
 <script src="{{asset('backend/plugins/chart.js/Chart.min.js')}}"></script>
 

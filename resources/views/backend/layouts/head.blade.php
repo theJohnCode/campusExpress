@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
   {{-- Summernote --}}
   <link rel="stylesheet" href="{{asset('backend/assets/summer/summernote.css')}}">
+  {{-- Switch Button --}}
+  <link rel="stylesheet" href="{{asset('backend/assets/switch-button-bootstrap/css/bootstrap-switch-button.min.css')}}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
