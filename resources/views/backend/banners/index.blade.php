@@ -25,6 +25,11 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+    <div class="row">
+      <div class="col-lg-12">
+        @include('backend/layouts/notification')
+      </div>
+    </div>
 
     <!-- Main content -->
     <section class="content">

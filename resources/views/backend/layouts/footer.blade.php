@@ -38,3 +38,9 @@
 
 @yield('datatablejs')
 @yield('scripts')
+
+<script>
+  setTimeout(() => {
+    $('#alert').slideUp();
+  }, 4000);
+</script>

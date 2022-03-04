@@ -26,12 +26,23 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
+            <div class="col-12">
+              @if ($errors->any())
+                <div class="alert aler-danger">
+                  <ul style="list-style: none;">
+                  @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                  @endforeach
+                </ul>
+                </div>
+              @endif
+            </div>
             <!-- general form elements -->
             <div class="card card-primary">
-              
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="POST">
+                <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
+                  @csrf
                 {{-- Title input --}}
                 <div class="card-body">
                   <div class="form-group">
@@ -78,7 +89,7 @@
                         <i class="fa fa-picture-o"></i> Choose
                             </a>
                       </span>
-                      <input id="thumbnail" class="form-control" type="text" name="filepath">
+                      <input id="thumbnail" class="form-control" type="text" name="photo">
                     </div>
                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                     </div>
@@ -89,7 +100,7 @@
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-              </form>
+                </form>
             </div>
             <!-- /.card -->
 
@@ -98,7 +109,7 @@
          
         </div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div><!-- /.\iner-fluid -->
     </section>
     <!-- /.content -->
   </div>

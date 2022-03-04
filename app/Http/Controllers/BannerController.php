@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
@@ -34,7 +36,32 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $request->validate([
+            'title' => 'string|required',
+            'description' => 'string|nullable',
+            'photo' => 'required',
+            'status' => 'nullable|in:active,inactive',
+            'condition' => 'nullable|in:promo,banner'
+        ]);
+
+        $data = $request->all();
+        $slug = Str::slug($request->input('title'));
+        $slug_count = Banner::where('slug', $slug)->count();
+
+        if ($slug_count > 0) {
+            $slug .= time().'-'.$slug;
+        }
+
+        $data['slug'] = $slug;
+        
+        $status = Banner::create($data);
+
+        if ($status) {
+            return redirect()->route('banner.index')->with('success','Banner created successfully');
+        } else {
+            return back()->with('error','Something went wrong');
+        }
     }
 
     /**
