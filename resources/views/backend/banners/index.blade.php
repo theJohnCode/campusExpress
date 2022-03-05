@@ -69,7 +69,7 @@
                       <td>
                         <input type="checkbox" data-toggle="switchbutton" checked data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
-                      <td class="text-center">
+                      <td>
                         <a href="" class="btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                         <a href="" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>
                       </td>
