@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class BannerController extends Controller
@@ -67,7 +68,12 @@ class BannerController extends Controller
 
     public function bannerStatus(Request $request)
     {
-        dd($request->all());
+        if ($request->mode == 'true') {
+            DB::table('banners')->where('id', $request->id)->update(['status' => 'active']);
+        } else {
+            DB::table('banners')->where('id', $request->id)->update(['status' => 'inactive']);
+        }
+        return response()->json(['msg' => 'Status changed successfully', 'status' => true ]);
     }
 
     /**
@@ -89,7 +95,14 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $banner = Banner::find($id);
+
+        if($banner){
+            return view('backend.banners.edit',compact('banner'));
+        }
+        else{
+            return back()->with('error','Data not found');
+        }
     }
 
     /**

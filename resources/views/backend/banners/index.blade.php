@@ -70,8 +70,8 @@
                         <input name="toggle" value="{{ $banner->id }}" type="checkbox" data-toggle="switchbutton" {{ $banner->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
                       <td>
-                        <a href="" class="btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <a href="" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>
+                        <a href="{{route('banner.edit')}}" class="btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <a href="{{route('banner.destroy')}}" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>
                       </td>
                     </tr>
                   @endforeach
@@ -100,23 +100,28 @@
 @endsection
 @section('scripts')
   <script>
-    $('input[name=toggle]').change(function () { 
+    $('input[name=toggle]').change(function (e) {
+      e.preventDefault() 
       let mode = $(this).prop('checked');
       let id = $(this).val();
-      
+    
       $.ajax({
         url: "{{ route('banner.status') }}",
         type: "POST",
         data: {
-          _token = "{{ csrf_token() }}",
+          _token: '{{csrf_token()}}',
           mode: mode,
           id: id
         },
         success: function (response) {
-          console.log(response.status);
+          if(response.status){
+            alert(response.msg)
+          }else{
+            alert('Please try again')
+          }
         },
         error: function(err){
-          console.log(err);
+          console.log(err.responseText);
         }
       });
     });
