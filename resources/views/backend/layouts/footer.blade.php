@@ -38,8 +38,9 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('backend/dist/js/pages/dashboard2.js')}}"></script>
 
-@yield('datatablejs')
 @yield('scripts')
+@yield('datatablejs')
+
 
 <script>
   setTimeout(() => {

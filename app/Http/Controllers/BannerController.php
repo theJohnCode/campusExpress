@@ -65,6 +65,11 @@ class BannerController extends Controller
         }
     }
 
+    public function bannerStatus(Request $request)
+    {
+        dd($request->all());
+    }
+
     /**
      * Display the specified resource.
      *

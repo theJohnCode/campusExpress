@@ -57,7 +57,7 @@
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $banner->title }}</td>
-                      <td>{{ $banner->description }}</td>
+                      <td>{!! html_entity_decode($banner->description) !!}</td>
                       <td><img src="{{ $banner->photo }}" alt="banner image" style="max-height: 90px; max-width: 120px;"></td>
                       <td>
                         @if ($banner->condition == 'banner')
@@ -67,7 +67,7 @@
                         @endif
                       </td>
                       <td>
-                        <input type="checkbox" data-toggle="switchbutton" checked data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
+                        <input name="toggle" value="{{ $banner->id }}" type="checkbox" data-toggle="switchbutton" {{ $banner->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
                       <td>
                         <a href="" class="btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
@@ -97,4 +97,28 @@
 
 @section('datatablejs')
     @include('backend.extra.datatablejs')
+@endsection
+@section('scripts')
+  <script>
+    $('input[name=toggle]').change(function () { 
+      let mode = $(this).prop('checked');
+      let id = $(this).val();
+      
+      $.ajax({
+        url: "{{ route('banner.status') }}",
+        type: "POST",
+        data: {
+          _token = "{{ csrf_token() }}",
+          mode: mode,
+          id: id
+        },
+        success: function (response) {
+          console.log(response.status);
+        },
+        error: function(err){
+          console.log(err);
+        }
+      });
+    });
+  </script>
 @endsection
