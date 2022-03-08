@@ -70,11 +70,11 @@
                         <input name="toggle" value="{{ $banner->id }}" type="checkbox" data-toggle="switchbutton" {{ $banner->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
                       <td>
-                        <a href="{{route('banner.edit',$banner->id)}}" class="btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form action="{{route('banner.destroy')}}" method="post">
+                        <a href="{{route('banner.edit',$banner->id)}}" class="float-left btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form class="float-right" action="{{route('banner.destroy',$banner->id)}}" method="post">
                         @csrf
                         @method('delete')
-                        <a href="" data-id="{{$banner->id}}" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>
+                        <a href="" data-id="{{$banner->id}}" class="delBtn btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>
                         </form>
                       </td>
                     </tr>
@@ -103,6 +103,37 @@
     @include('backend.extra.datatablejs')
 @endsection
 @section('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+  $('.delBtn').click(function(e){
+    let form = $(this).closest('form');
+    let dataid = $(this).data('id')
+    e.preventDefault();
+
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        form.submit();
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+});
+  })
+  </script>
   <script>
     $('input[name=toggle]').change(function (e) {
       e.preventDefault() 

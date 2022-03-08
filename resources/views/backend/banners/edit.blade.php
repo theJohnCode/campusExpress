@@ -58,21 +58,10 @@
                         <textarea id="description" class="form-control" name="description" placeholder="Enter ...">{{$banner->description}}</textarea>
                       </div>
                     </div>
-                    
-                    <div class="col-sm-12">
-                      <!-- select -->
-                      <div class="form-group">
-                        <label>Status</label>
-                        <select name="status" class="form-control">
-                          <option>-- Select --</option>
-                          <option value="active" {{$banner->status == 'active' ? "selected" : ''}}>Active</option>
-                          <option value="inactive" {{$banner->status == 'inactive' ? 'selecetd' : ''}}>Inactive</option>
-                        </select>
-                      </div>
-                    </div>
+
 
                     <div class="col-sm-12">
-                      <!-- select -->
+                      <!-- Condition -->
                       <div class="form-group">
                         <label>Condition</label>
                         <select name="condition" class="form-control">
@@ -82,7 +71,20 @@
                         </select>
                       </div>
                     </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <a id="lfm" data-input="thumbnail"  data-preview="holder" class="btn btn-primary">
+                        <i class="fa fa-picture-o"></i> Choose
+                            </a>
+                      </span>
+                      <input id="thumbnail" class="form-control" type="text" value="{{$banner->photo}}" name="photo">
+                    </div>
+                    <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+                    </div>
                   
+                </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">

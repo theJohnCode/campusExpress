@@ -119,6 +119,7 @@ class BannerController extends Controller
             $request->validate([
                 'title' => 'string|required',
                 'description' => 'string|nullable',
+                'photo' => 'required',
                 'status' => 'nullable|in:active,inactive',
                 'condition' => 'nullable|in:promo,banner'
             ]);
@@ -145,6 +146,17 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $banner = Banner::find($id);
+
+        if ($banner) {
+            $status = $banner->delete();
+            if ($status) {
+              return redirect()->route('banner.index')->with('success','Banner successfully deleted');
+            } else {
+                return redirect()->back()->with('error','Something went wrong!');
+            }
+        } else {
+            return back()->with('error', 'Data not found');
+        }
     }
 }
