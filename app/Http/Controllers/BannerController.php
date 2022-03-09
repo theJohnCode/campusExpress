@@ -16,8 +16,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banners = Banner::orderBy('id','DESC')->get();
-        return view('backend.banners.index',compact('banners'));
+        $banners = Banner::orderBy('id', 'DESC')->get();
+        return view('backend.banners.index', compact('banners'));
     }
 
     /**
@@ -151,9 +151,9 @@ class BannerController extends Controller
         if ($banner) {
             $status = $banner->delete();
             if ($status) {
-              return redirect()->route('banner.index')->with('success','Banner successfully deleted');
+                return redirect()->route('banner.index')->with('success', 'Banner successfully deleted');
             } else {
-                return redirect()->back()->with('error','Something went wrong!');
+                return redirect()->back()->with('error', 'Something went wrong!');
             }
         } else {
             return back()->with('error', 'Data not found');

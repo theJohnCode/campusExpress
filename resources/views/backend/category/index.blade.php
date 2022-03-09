@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Banners</h1>
+            <h1>Categories</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">Banners</li>
+              <li class="breadcrumb-item active">Categories</li>
             </ol>
           </div>
         </div>
@@ -45,36 +45,30 @@
                   <tr>
                     <th>S/N</th>
                     <th>Title</th>
-                    <th>Description</th>
                     <th>Photo</th>
-                    <th>Condition</th>
+                    <th>is parent</th>
+                    <th>Parent</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach ($banners as $banner)
+                  @foreach ($categories as $category)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $banner->title }}</td>
-                      <td>{!! html_entity_decode($banner->description) !!}</td>
-                      <td><img src="{{ $banner->photo }}" alt="banner image" style="max-height: 90px; max-width: 120px;"></td>
+                      <td>{{ $category->title }}</td>
+                      <td><img src="{{ $category->photo }}" alt="category image" style="max-height: 90px; max-width: 120px;"></td>
+                      <td>{{$category->is_parent === 1 ? 'Yes' : 'No'}}</td>
+                      <td>{{$category->parent_id}}</td>
                       <td>
-                        @if ($banner->condition == 'banner')
-                          <span class="badge badge-success">{{ $banner->condition }}</span>
-                        @else
-                          <span class="badge badge-primary">{{ $banner->condition }}</span>
-                        @endif
+                        <input name="toggle" value="{{ $category->id }}" type="checkbox" data-toggle="switchbutton" {{ $category->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
                       <td>
-                        <input name="toggle" value="{{ $banner->id }}" type="checkbox" data-toggle="switchbutton" {{ $banner->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
-                      </td>
-                      <td>
-                        <a href="{{route('banner.edit',$banner->id)}}" class="float-left btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form class="float-right" action="{{route('banner.destroy',$banner->id)}}" method="post">
+                        <a href="{{route('category.edit',$category->id)}}" class="float-left btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form class="float-right" action="{{route('category.destroy',$category->id)}}" method="post">
                         @csrf
                         @method('delete')
-                        <a href="" data-id="{{$banner->id}}" class="delBtn btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>
+                        <a href="" data-id="{{$category->id}}" class="delBtn btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>
                         </form>
                       </td>
                     </tr>
@@ -141,7 +135,7 @@
       let id = $(this).val();
     
       $.ajax({
-        url: "{{ route('banner.status') }}",
+        url: "{{ route('category.status') }}",
         type: "POST",
         data: {
           _token: '{{csrf_token()}}',
