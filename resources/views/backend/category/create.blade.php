@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Banner</h1>
+            <h1>Category</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">Add Banner</li>
+              <li class="breadcrumb-item active">Add Category</li>
             </ol>
           </div>
         </div>
@@ -41,7 +41,7 @@
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-                <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
                   @csrf
                 {{-- Title input --}}
                 <div class="card-body">
@@ -53,8 +53,8 @@
                     <div class="col-sm-12 col-md-12">
                       <!-- textarea -->
                       <div class="form-group">
-                        <label>Description</label>
-                        <textarea id="description" class="form-control" name="description" placeholder="Enter ...">{{old('description')}}</textarea>
+                        <label>Summary</label>
+                        <textarea id="summary" class="form-control" name="summary" placeholder="Enter ...">{{old('summary')}}</textarea>
                       </div>
                     </div>
                     
@@ -73,14 +73,22 @@
                     <div class="col-sm-12">
                       <!-- select -->
                       <div class="form-group">
-                        <label>Condition</label>
-                        <select name="condition" class="form-control">
-                          <option>-- Select --</option>
-                          <option value="banner" {{old('condition') == 'banner' ? "selected" : ''}}>Banner</option>
-                          <option value="promo" {{old('condition') == 'promo' ? "selected" : ''}}>Promoted</option>
+                        <label>Is Parent: </label>
+                        <input type="checkbox" name="is_parent" id="is_parent" value="1" checked> Yes
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12 d-none" id="parent_cat_div">
+                      <!-- select -->
+                      <div class="form-group">
+                        <label>Parent Category</label>
+                        <select name="parent_id" class="form-control">
+                          <option>-- Parent Category --</option>
+                          
                         </select>
                       </div>
                     </div>
+
                   <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
@@ -123,7 +131,20 @@
 </script>
 <script>
   $(document).ready(function() {
-  $('#description').summernote();
+  $('#summary').summernote();
 });
+</script>
+<script>
+  $('#is_parent').change(function(e){
+    e.preventDefault();
+    let is_checked = $('#is_parent').prop('checked');
+    //alert(is_checked)
+    if(is_checked){
+      $('#parent_cat_div').addClass('d-none');
+      $('#parent_cat_div').val('');
+    }else{
+      $('#parent_cat_div').removeClass('d-none');
+    }
+  });``
 </script>
 @endsection
