@@ -27,7 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
+        $parent_category = Category::where('is_parent',1)->orderBy('title','ASC')->get();
+        return view('backend.category.create',compact('parent_category'));
     }
 
     /**
@@ -59,7 +60,7 @@ class CategoryController extends Controller
         $status = Category::create($data);
 
         if ($status) {
-            return redirect()->route('banner.index')->with('success', 'Banner created successfully');
+            return redirect()->route('category.index')->with('success', 'Category created successfully');
         } else {
             return back()->with('error', 'Something went wrong');
         }
@@ -112,7 +113,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        if ($category) {
+            return view('backend.category.edit', compact('category'));
+        } else {
+            return back()->with('error', 'Data not found');
+
     }
 
     /**

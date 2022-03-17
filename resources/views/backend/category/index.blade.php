@@ -59,7 +59,7 @@
                       <td>{{ $category->title }}</td>
                       <td><img src="{{ $category->photo }}" alt="category image" style="max-height: 90px; max-width: 120px;"></td>
                       <td>{{$category->is_parent === 1 ? 'Yes' : 'No'}}</td>
-                      <td>{{$category->parent_id}}</td>
+                      <td>{{\App\Models\Category::where('id',$category->parent_id)->value('title')}}</td>
                       <td>
                         <input name="toggle" value="{{ $category->id }}" type="checkbox" data-toggle="switchbutton" {{ $category->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
@@ -126,7 +126,7 @@
         swal("Your file is safe!");
       }
 });
-  })
+  });
   </script>
   <script>
     $('input[name=toggle]').change(function (e) {

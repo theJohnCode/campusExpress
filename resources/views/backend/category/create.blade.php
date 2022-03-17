@@ -74,17 +74,19 @@
                       <!-- select -->
                       <div class="form-group">
                         <label>Is Parent: </label>
-                        <input type="checkbox" name="is_parent" id="is_parent" value="1" checked> Yes
+                        <input type="checkbox" name="is_parent" id="is_parent" value="1"> tick to make it Parent
                       </div>
                     </div>
 
-                    <div class="col-sm-12 d-none" id="parent_cat_div">
+                    <div class="col-sm-12" id="parent_cat_div">
                       <!-- select -->
                       <div class="form-group">
                         <label>Parent Category</label>
                         <select name="parent_id" class="form-control">
                           <option>-- Parent Category --</option>
-                          
+                          @foreach ($parent_category as $pc)
+                            <option value="{{$pc->id}}">{{$pc->title}}</option>
+                          @endforeach
                         </select>
                       </div>
                     </div>
@@ -135,16 +137,18 @@
 });
 </script>
 <script>
-  $('#is_parent').change(function(e){
+ $(document).ready(function () {
+    $('#is_parent').change(function(e){
     e.preventDefault();
     let is_checked = $('#is_parent').prop('checked');
-    //alert(is_checked)
     if(is_checked){
       $('#parent_cat_div').addClass('d-none');
-      $('#parent_cat_div').val('');
+      console.log($('#parent_cat_div'));
+      $('#parent_cat_div').html('');
     }else{
       $('#parent_cat_div').removeClass('d-none');
     }
-  });``
+  });
+ });
 </script>
 @endsection
