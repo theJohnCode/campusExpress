@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $parent_category = Category::where('is_parent',1)->orderBy('title','ASC')->get();
+        $parent_category = Category::where('is_parent', 1)->orderBy('title', 'ASC')->get();
         return view('backend.category.create',compact('parent_category'));
     }
 
@@ -56,6 +56,7 @@ class CategoryController extends Controller
         }
 
         $data['slug'] = $slug;
+        $data['is_parent'] = $request->input('is_parent',0);
 
         $status = Category::create($data);
 
@@ -95,10 +96,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $parent_category = Category::where('is_parent', 1)->orderBy('title', 'ASC')->get();
         $category = Category::find($id);
 
         if ($category) {
-            return view('backend.category.edit', compact('category'));
+            return view('backend.category.edit', compact(['category','parent_category']));
         } else {
             return back()->with('error', 'Data not found');
         }
@@ -116,10 +118,10 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if ($category) {
-            return view('backend.category.edit', compact('category'));
+            
         } else {
             return back()->with('error', 'Data not found');
-
+        }
     }
 
     /**
