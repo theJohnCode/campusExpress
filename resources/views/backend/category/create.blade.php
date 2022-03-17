@@ -147,6 +147,15 @@
       $('#parent_cat_div').html('');
     }else{
       $('#parent_cat_div').removeClass('d-none');
+      $('#parent_cat_div').html(`<div class="form-group">
+                        <label>Parent Category</label>
+                        <select name="parent_id" class="form-control">
+                          <option>-- Parent Category --</option>
+                          @foreach ($parent_category as $pc)
+                            <option value="{{$pc->id}}" {{old('parent_id') == $pc->id ? 'selected' : ''}}>{{$pc->title}}</option>
+                          @endforeach
+                        </select>
+                      </div>`);
     }
   });
  });

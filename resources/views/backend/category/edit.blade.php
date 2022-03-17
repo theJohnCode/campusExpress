@@ -97,7 +97,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
                 </form>
             </div>
@@ -136,6 +136,15 @@
       $('#parent_cat_div').html('');
     }else{
       $('#parent_cat_div').removeClass('d-none');
+      $('#parent_cat_div').html(`<div class="form-group">
+                        <label>Parent Category</label>
+                        <select name="parent_id" class="form-control">
+                          <option>-- Parent Category --</option>
+                          @foreach ($parent_category as $pc)
+                            <option value="{{$pc->id}}" {{$pc->id == $category->parent_id ? 'selected' : ''}}>{{$pc->title}}</option>
+                          @endforeach
+                        </select>
+                      </div>`);
     }
   });
  });
