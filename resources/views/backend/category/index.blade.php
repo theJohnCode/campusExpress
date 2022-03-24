@@ -65,6 +65,7 @@
                       </td>
                       <td>
                         <a href="{{route('category.edit',$category->id)}}" class="float-left btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        
                         <form class="float-right" action="{{route('category.destroy',$category->id)}}" method="post">
                         @csrf
                         @method('delete')

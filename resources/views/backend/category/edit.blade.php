@@ -131,15 +131,17 @@
     e.preventDefault();
     let is_checked = $('#is_parent').prop('checked');
     if(is_checked){
+      $('#is_parent').val('1');
       $('#parent_cat_div').addClass('d-none');
       //console.log($('#parent_cat_div'));
-      $('#parent_cat_div select').val('');
+      //$('#parent_cat_div select').val('');
     }else{
+      $('#is_parent').val(`{{$category->is_parent}}`);
       $('#parent_cat_div').removeClass('d-none');
     }
   });
   if ($('#parent_cat_div').hasClass('d-none')) {
-    $('#parent_cat_div select').val('');
+    //$('#parent_cat_div select').val('');
   }
  });
 </script>

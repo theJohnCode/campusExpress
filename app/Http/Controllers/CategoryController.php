@@ -115,6 +115,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $category = Category::find($id);
 
         if ($category) {
@@ -128,6 +129,10 @@ class CategoryController extends Controller
             ]);
 
             $data = $request->all();
+
+            if ($request->is_parent == 1) {
+                $data['parent_id'] = null;
+            }
            
             $data['is_parent'] = $request->input('is_parent', 0);
 
@@ -154,9 +159,14 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
+        $category_children_id = Category::where('parent_id',$id)->pluck('id');
         if ($category) {
             $status = $category->delete();
             if ($status) {
+                if (count($category_children_id) > 0) {
+                    Category::shiftChild($category_children_id);
+                }
+                
                 return redirect()->route('category.index')->with('success', 'Category successfully deleted');
             } else {
                 return redirect()->back()->with('error', 'Something went wrong!');
