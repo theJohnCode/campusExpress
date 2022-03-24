@@ -143,19 +143,12 @@
     let is_checked = $('#is_parent').prop('checked');
     if(is_checked){
       $('#parent_cat_div').addClass('d-none');
-      console.log($('#parent_cat_div'));
-      $('#parent_cat_div').html('');
+      //console.log($('#parent_cat_div select'));
+      $('#parent_cat_div select').val('');
     }else{
       $('#parent_cat_div').removeClass('d-none');
-      $('#parent_cat_div').html(`<div class="form-group">
-                        <label>Parent Category</label>
-                        <select name="parent_id" class="form-control">
-                          <option>-- Parent Category --</option>
-                          @foreach ($parent_category as $pc)
-                            <option value="{{$pc->id}}" {{old('parent_id') == $pc->id ? 'selected' : ''}}>{{$pc->title}}</option>
-                          @endforeach
-                        </select>
-                      </div>`);
+      // console.log($('#parent_cat_div select').val());
+      // console.log($('#parent_cat_div select'));
     }
   });
  });

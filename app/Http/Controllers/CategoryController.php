@@ -118,6 +118,26 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if ($category) {
+
+            $request->validate([
+                'title' => 'string|required',
+                'summary' => 'string|nullable',
+                'is_parent' => 'sometimes|in:1',
+                'parent_id' => 'nullable',
+                'status' => 'nullable|in:active,inactive',
+            ]);
+
+            $data = $request->all();
+           
+            $data['is_parent'] = $request->input('is_parent', 0);
+
+            $status = $category->fill($data)->save();
+
+            if ($status) {
+                return redirect()->route('category.index')->with('success', 'Category updated successfully');
+            } else {
+                return back()->with('error', 'Something went wrong');
+            }
             
         } else {
             return back()->with('error', 'Data not found');

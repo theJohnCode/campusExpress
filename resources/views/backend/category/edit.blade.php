@@ -41,7 +41,7 @@
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-                <form action="{{route('category.store'),$category->id}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('category.update',$category->id)}}" method="POST" enctype="multipart/form-data">
                   @csrf
                   @method('patch')
                 {{-- Title input --}}
@@ -132,21 +132,15 @@
     let is_checked = $('#is_parent').prop('checked');
     if(is_checked){
       $('#parent_cat_div').addClass('d-none');
-      console.log($('#parent_cat_div'));
-      $('#parent_cat_div').html('');
+      //console.log($('#parent_cat_div'));
+      $('#parent_cat_div select').val('');
     }else{
       $('#parent_cat_div').removeClass('d-none');
-      $('#parent_cat_div').html(`<div class="form-group">
-                        <label>Parent Category</label>
-                        <select name="parent_id" class="form-control">
-                          <option>-- Parent Category --</option>
-                          @foreach ($parent_category as $pc)
-                            <option value="{{$pc->id}}" {{$pc->id == $category->parent_id ? 'selected' : ''}}>{{$pc->title}}</option>
-                          @endforeach
-                        </select>
-                      </div>`);
     }
   });
+  if ($('#parent_cat_div').hasClass('d-none')) {
+    $('#parent_cat_div select').val('');
+  }
  });
 </script>
 @endsection

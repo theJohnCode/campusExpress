@@ -1,9 +1,8 @@
  <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2022 <a href="#">Campus Express.com</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
     </div>
   </footer>
 </div>
@@ -36,7 +35,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('backend/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('backend/dist/js/pages/dashboard2.js')}}"></script>
 
 @yield('scripts')
 @yield('datatablejs')
