@@ -43,7 +43,7 @@ class CategoryController extends Controller
             'title' => 'string|required',
             'summary' => 'string|nullable',
             'is_parent' => 'sometimes|in:1',
-            'parent_id' => 'nullable',
+            'parent_id' => 'nullable|exists:categories,id',
             'status' => 'nullable|in:active,inactive',
         ]);
 
@@ -123,7 +123,7 @@ class CategoryController extends Controller
                 'title' => 'string|required',
                 'summary' => 'string|nullable',
                 'is_parent' => 'sometimes|in:1',
-                'parent_id' => 'nullable',
+                'parent_id' => 'nullable|exists:categories,id',
                 'status' => 'nullable|in:active,inactive',
             ]);
 
