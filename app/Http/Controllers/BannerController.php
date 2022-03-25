@@ -17,7 +17,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::orderBy('id', 'DESC')->get();
-        return view('backend.banners.index', compact('banners'));
+        return view('backend.banner.index', compact('banners'));
     }
 
     /**
@@ -27,7 +27,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('backend.banners.create');
+        return view('backend.banner.create');
     }
 
     /**
@@ -98,7 +98,7 @@ class BannerController extends Controller
         $banner = Banner::find($id);
 
         if ($banner) {
-            return view('backend.banners.edit', compact('banner'));
+            return view('backend.banner.edit', compact('banner'));
         } else {
             return back()->with('error', 'Data not found');
         }
