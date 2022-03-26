@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             'offer_price' => $this->faker->numberBetween(100,1000),
             'discount' => $this->faker->numberBetween(100,1000),
             'photo' => $this->faker->imageUrl(400,200),
-            'size' => $this->faker->randomElement(['S','M','L']),
+            'size' => $this->faker->randomElement(['S','M','L','XL']),
             'conditions' => $this->faker->randomElement(['new','popular','winter']),
             'status' => $this->faker->randomElement(['active','inactive']),
             'brand_id' => $this->faker->randomElement(Brand::pluck('id')->toArray()),

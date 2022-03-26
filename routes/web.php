@@ -5,6 +5,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +39,12 @@ Route::group(['prefix' => 'admin', 'middlware' => 'auth'], function(){
     // Banner Section
     Route::resource('category', CategoryController::class);
     Route::post('/category_status', [CategoryController::class,'categoryStatus'])->name('category.status');
+
     // Brand Section
     Route::resource('brand', BrandController::class);
     Route::post('/brand_status', [BrandController::class,'brandStatus'])->name('brand.status');
+
+    // Brand Section
+    Route::resource('product', ProductController::class);
+    Route::post('/product_status', [ProductController::class,'productStatus'])->name('product.status');
 });

@@ -21,6 +21,7 @@ class Product extends Model
         'size',
         'conditions',
         'status',
+        'brand_id',
         'vendor_id',
         'cat_id',
         'child_cat_id',
