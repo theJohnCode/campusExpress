@@ -4,21 +4,7 @@
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Banner</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
-              <li class="breadcrumb-item active">Add Banner</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+    @include('backend.layouts.ba')
 
     <!-- Main content -->
     <section class="content">
@@ -41,7 +27,7 @@
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-                <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
                   @csrf
                 {{-- Title input --}}
                 <div class="card-body">
@@ -49,9 +35,15 @@
                     <label for="title">Title <span class="text-danger">*</span></label>
                     <input type="text" name="title" class="form-control"  placeholder="Title" value="{{old('title')}}">
                   </div>
-                  
+                  <div class="col-sm-12 col-md-12">
+                      <!-- Summary -->
+                      <div class="form-group">
+                        <label>Summary</label>
+                        <textarea id="summary" class="form-control" name="summary" placeholder="Enter ...">{{old('summary')}}</textarea>
+                      </div>
+                    </div>
                     <div class="col-sm-12 col-md-12">
-                      <!-- textarea -->
+                      <!-- Description -->
                       <div class="form-group">
                         <label>Description</label>
                         <textarea id="description" class="form-control" name="description" placeholder="Enter ...">{{old('description')}}</textarea>
@@ -59,7 +51,21 @@
                     </div>
                     
                     <div class="col-sm-12">
-                      <!-- select -->
+                      <!-- stock -->
+                      <div class="form-group">
+                        <label>Stock</label>
+                        <input class="form-control" type="number" name="stock" id="stock">
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <!-- price -->
+                      <div class="form-group">
+                        <label>Price</label>
+                        <input class="form-control" step="any" type="number" name="price" id="price">
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <!-- Status -->
                       <div class="form-group">
                         <label>Status</label>
                         <select name="status" class="form-control">
@@ -124,6 +130,11 @@
 <script>
   $(document).ready(function() {
   $('#description').summernote();
+});
+</script>
+<script>
+  $(document).ready(function() {
+  $('#summary').summernote();
 });
 </script>
 @endsection

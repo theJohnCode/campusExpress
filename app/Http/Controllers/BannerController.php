@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
+    private string $display = 'Banner';
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +18,7 @@ class BannerController extends Controller
      */
     public function index()
     {
+        Session::put('display',$this->display);
         $banners = Banner::orderBy('id', 'DESC')->get();
         return view('backend.banner.index', compact('banners'));
     }

@@ -9,7 +9,7 @@
         <a href="index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Banner</a>
+        <a href="#" class="nav-link">{{ucfirst(request()->segment(2))}}</a>
       </li>
     </ul>
 
