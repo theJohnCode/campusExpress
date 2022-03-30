@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,7 +38,42 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "title" => "string|required",
+            "summary" => "string|required",
+            "description" => "string|nullable",
+            "stock" => "nullable|numeric",
+            "price" => "nullable|numeric",
+            "discount" => "nullable|numeric",
+            "size" => "nullable",
+            "status" => "nullable|in:active,inactive",
+           // "brand_id" => "required",
+            "cat_id" => "required",
+            "child_cat_id" => "nullable|exists:categories,id",
+           // "vendor_id" => "",
+            "conditions" => "nullable",
+            "photo" => "required",
+        ]);
+
+        $data = $request->all();
+        $slug = Str::slug($request->input('title'));
+        $slug_count = Product::where('slug', $slug)->count();
+
+        if ($slug_count > 0) {
+            $slug .= time() . '-' . $slug;
+        }
+
+        $data['slug'] = $slug;
+        $data['offer_price'] = (($request->price - ($request->price * $request->discount) / 100));
+    
+
+        $status = Product::create($data);
+
+        if ($status) {
+            return redirect()->route('product.index')->with('success', 'Product created successfully');
+        } else {
+            return back()->with('error', 'Something went wrong');
+        }
     }
 
     /**
@@ -48,7 +84,13 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        if ($product) {
+            return view('backend.product.show', compact(['product']));
+        } else {
+            return back()->with('error', 'Data not found');
+        }
     }
 
     /**

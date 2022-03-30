@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    private string $display = 'Category';
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +16,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        Session::put('display',$this->display);
         $categories = Category::orderBy('id', 'DESC')->get();
         return view('backend.category.index', compact('categories'));
     }
@@ -47,7 +44,7 @@ class CategoryController extends Controller
             'summary' => 'string|nullable',
             'is_parent' => 'sometimes|in:1',
             'parent_id' => 'nullable|exists:categories,id',
-            'status' => 'nullable|in:active,inactive',
+            'status' => 'required|in:active,inactive',
         ]);
 
         $data = $request->all();
@@ -127,7 +124,7 @@ class CategoryController extends Controller
                 'title' => 'string|required',
                 'summary' => 'string|nullable',
                 'is_parent' => 'sometimes|in:1',
-                'parent_id' => 'nullable|exists:categories,id',
+                'parent_id' => 'nullable',
                 'status' => 'nullable|in:active,inactive',
             ]);
 
@@ -177,5 +174,19 @@ class CategoryController extends Controller
         } else {
             return back()->with('error', 'Data not found');
         }
+    }
+
+    public function getChildParentID(Request $request, $id)
+    {
+       $category = Category::find($request->id);
+       if($category){
+           $child_id = Category::getChildParentByID($request->id);
+           if(count($child_id) <= 0){
+                return response()->json(['status' => false, 'data' => null, 'msg' => '']);
+           }
+            return response()->json(['status' => true, 'data' => $child_id, 'msg' => '']);
+       }else{
+           return response()->json(['status' => false, 'data' => null, 'msg' => '']);
+       }
     }
 }

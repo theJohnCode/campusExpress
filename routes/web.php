@@ -36,15 +36,16 @@ Route::group(['prefix' => 'admin', 'middlware' => 'auth'], function(){
     Route::resource('banner', BannerController::class);
     Route::post('/banner_status', [BannerController::class,'bannerStatus'])->name('banner.status');
 
-    // Banner Section
+    // Category Section
     Route::resource('category', CategoryController::class);
     Route::post('/category_status', [CategoryController::class,'categoryStatus'])->name('category.status');
+    Route::post('category/{id}/child',[CategoryController::class, 'getChildParentID']);
 
     // Brand Section
     Route::resource('brand', BrandController::class);
     Route::post('/brand_status', [BrandController::class,'brandStatus'])->name('brand.status');
 
-    // Brand Section
+    // Product Section
     Route::resource('product', ProductController::class);
     Route::post('/product_status', [ProductController::class,'productStatus'])->name('product.status');
 });

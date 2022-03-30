@@ -14,7 +14,7 @@
           <div class="col-md-12">
             <div class="col-12">
               @if ($errors->any())
-                <div class="alert aler-danger">
+                <div class="alert alert-danger">
                   <ul style="list-style: none;">
                   @foreach ($errors->all() as $error)
                     <li>{{$error}}</li>
@@ -38,7 +38,7 @@
                   <div class="col-sm-12 col-md-12">
                       <!-- Summary -->
                       <div class="form-group">
-                        <label>Summary</label>
+                        <label>Summary <span class="text-danger">*</span></label>
                         <textarea id="summary" class="form-control" name="summary" placeholder="Enter ...">{{old('summary')}}</textarea>
                       </div>
                     </div>
@@ -53,15 +53,35 @@
                     <div class="col-sm-12">
                       <!-- stock -->
                       <div class="form-group">
-                        <label>Stock</label>
-                        <input class="form-control" type="number" name="stock" id="stock">
+                        <label>Stock <span class="text-danger">*</span></label>
+                        <input class="form-control" type="number" name="stock" id="stock" value="{{old('stock')}}">
                       </div>
                     </div>
                     <div class="col-sm-12">
                       <!-- price -->
                       <div class="form-group">
-                        <label>Price</label>
-                        <input class="form-control" step="any" type="number" name="price" id="price">
+                        <label>Price <span class="text-danger">*</span></label>
+                        <input class="form-control" step="any" type="number" name="price" id="price" value="{{old('price')}}">
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <!-- discount -->
+                      <div class="form-group">
+                        <label>Discount</label>
+                        <input class="form-control" step="any" min="0" max="100" type="number" name="discount" id="discount" value="{{old('discount')}}">
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <!-- Size -->
+                      <div class="form-group">
+                        <label>Size</label>
+                        <select name="size" class="form-control">
+                          <option>-- Select --</option>
+                          <option value="S" {{old('size') == 'S' ? "selected" : ''}}>Small</option>
+                          <option value="M" {{old('size') == 'M' ? 'selecetd' : ''}}>Medium</option>
+                          <option value="L" {{old('size') == 'L' ? 'selecetd' : ''}}>Large</option>
+                          <option value="XL" {{old('size') == 'XL' ? 'selecetd' : ''}}>Extra Large</option>
+                        </select>
                       </div>
                     </div>
                     <div class="col-sm-12">
@@ -69,7 +89,7 @@
                       <div class="form-group">
                         <label>Status</label>
                         <select name="status" class="form-control">
-                          <option>-- Select --</option>
+                          <option>-- Status --</option>
                           <option value="active" {{old('status') == 'active' ? "selected" : ''}}>Active</option>
                           <option value="inactive" {{old('status') == 'inactive' ? 'selecetd' : ''}}>Inactive</option>
                         </select>
@@ -77,13 +97,60 @@
                     </div>
 
                     <div class="col-sm-12">
+                      <!-- Brand -->
+                      <div class="form-group">
+                        <label>Brand</label>
+                        <select name="brand_id" class="form-control">
+                          <option>-- Brand --</option>
+                          @foreach (\App\Models\Brand::get() as $brand)
+                            <option value="{{$brand->id}}">{{$brand->title}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <!-- Category -->
+                      <div class="form-group">
+                        <label>Category</label>
+                        <select name="cat_id" class="form-control" id="cat_select">
+                          <option>-- Category --</option>
+                          @foreach (\App\Models\Category::where('is_parent',1)->get() as $category)
+                            <option value="{{$category->id}}">{{$category->title}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 d-none" id="child_cat">
+                      <!-- Child Category -->
+                      <div class="form-group">
+                        <label>Child Category</label>
+                        <select name="child_cat_id" class="form-control" id="child_select">
+                         
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <!-- Vendor -->
+                      <div class="form-group">
+                        <label>Vendor</label>
+                        <select name="vendor_id" class="form-control">
+                          <option>-- Vendor --</option>
+                          @foreach (\App\Models\User::where('role','vendor')->get() as $vendor)
+                            <option value="{{$vendor->id}}">{{$vendor->fullname}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-12">
                       <!-- select -->
                       <div class="form-group">
-                        <label>Condition</label>
-                        <select name="condition" class="form-control">
-                          <option>-- Select --</option>
-                          <option value="banner" {{old('condition') == 'banner' ? "selected" : ''}}>Banner</option>
-                          <option value="promo" {{old('condition') == 'promo' ? "selected" : ''}}>Promoted</option>
+                        <label>Conditions</label>
+                        <select name="conditions" class="form-control">
+                          <option>-- Condition --</option>
+                          <option value="new" {{old('conditions') == 'new' ? "selected" : ''}}>New</option>
+                          <option value="winter" {{old('conditions') == 'winter' ? "selected" : ''}}>Winter</option>
+                          <option value="popular" {{old('conditions') == 'popular' ? "selected" : ''}}>Popular</option>
                         </select>
                       </div>
                     </div>
@@ -136,5 +203,35 @@
   $(document).ready(function() {
   $('#summary').summernote();
 });
+</script>
+<script>
+   $('#cat_select').change(function (e) { 
+     e.preventDefault();
+     let selected = $(this).val();
+      
+     if(selected != null){
+       $.ajax({
+         type: "POST",
+         url: "/admin/category/"+selected+"/child",
+         data: {
+           _token: "{{ csrf_token() }}",
+           selected: selected
+         },
+         success: function (response) {
+           console.log(response.data);
+           let option = `<option value=''> -- Child Category -- </option>`;
+           if(response.status){
+             $('#child_cat').removeClass('d-none');
+             $.each(response.data,function(id,title){
+              option += `<option value='${id}'>${title}</option>`;
+             });
+           } else{
+             $('#child_cat').addClass('d-none');
+           }
+           $('#child_select').html(option);
+         }
+       });
+     }
+   });
 </script>
 @endsection
