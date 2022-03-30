@@ -47,10 +47,10 @@ class ProductController extends Controller
             "discount" => "nullable|numeric",
             "size" => "nullable",
             "status" => "nullable|in:active,inactive",
-           // "brand_id" => "required",
+           "brand_id" => "required",
             "cat_id" => "required",
             "child_cat_id" => "nullable|exists:categories,id",
-           // "vendor_id" => "",
+           "vendor_id" => "required",
             "conditions" => "nullable",
             "photo" => "required",
         ]);
@@ -64,6 +64,7 @@ class ProductController extends Controller
         }
 
         $data['slug'] = $slug;
+
         $data['offer_price'] = (($request->price - ($request->price * $request->discount) / 100));
     
 
@@ -101,7 +102,13 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        if ($product) {
+            return view('backend.product.edit', compact(['product']));
+        } else {
+            return back()->with('error', 'Data not found');
+        }
     }
 
     /**
@@ -113,7 +120,42 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        if ($product) {
+
+            $request->validate([
+                "title" => "string|required",
+                "summary" => "string|required",
+                "description" => "string|nullable",
+                "stock" => "nullable|numeric",
+                "price" => "nullable|numeric",
+                "discount" => "nullable|numeric",
+                "size" => "nullable",
+                "brand_id" => "required",
+                "cat_id" => "required",
+                "child_cat_id" => "nullable|exists:categories,id",
+                "vendor_id" => "required",
+                "conditions" => "nullable",
+                "photo" => "required",
+            ]);
+
+            $data = $request->all();
+
+            $data['offer_price'] = (($request->price - ($request->price * $request->discount) / 100));
+    
+            //dd($data);
+
+            $status = $product->fill($data)->save();
+
+            if ($status) {
+                return redirect()->route('product.index')->with('success', 'Product updated successfully');
+            } else {
+                return back()->with('error', 'Something went wrong');
+            }
+        } else {
+            return back()->with('error', 'Data not found');
+        }
     }
 
     /**
