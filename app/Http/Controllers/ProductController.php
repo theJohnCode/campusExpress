@@ -166,7 +166,18 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+
+        if ($product) {
+            $status = $product->delete();
+            if ($status) {
+                return redirect()->route('product.index')->with('success', 'Product successfully deleted');
+            } else {
+                return redirect()->back()->with('error', 'Something went wrong!');
+            }
+        } else {
+            return back()->with('error', 'Data not found');
+        }
     }
 
     public function productStatus(Request $request)

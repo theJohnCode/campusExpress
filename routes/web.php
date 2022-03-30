@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin', 'middlware' => 'auth'], function(){
     // Brand Section
     Route::resource('brand', BrandController::class);
     Route::post('/brand_status', [BrandController::class,'brandStatus'])->name('brand.status');
-
+    
     // Product Section
     Route::resource('product', ProductController::class);
     Route::post('/product_status', [ProductController::class,'productStatus'])->name('product.status');

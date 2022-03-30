@@ -43,10 +43,13 @@
                   </thead>
                   <tbody>
                   @foreach ($products as $product)
+                    @php
+                      $photo = explode(',',$product->photo)
+                    @endphp
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $product->title }}</td>
-                      <td><img src="{{ $product->photo }}" alt="product image" style="max-height: 90px; max-width: 120px;"></td>
+                      <td><img src="{{ $photo[0] }}" alt="product image" style="max-height: 90px; max-width: 120px;"></td>
                       <td>{{number_format($product->price,2)}}</td>
                       <td>{{$product->discount}}%</td>
                       <td>{{$product->size}}</td>
@@ -158,6 +161,12 @@
                                       <div class="col-md-6">
                                          <strong>Condition</strong>
                                         <p class="badge badge-primary" style="padding: 10px; width: 100px;">{{ $prod->conditions }}</p>
+                                      </div>
+                                    </div>
+                                    <div class="row mt-1">
+                                      <div class="col-md-12">
+                                         <strong>Vendor</strong>
+                                        <p>{{ \App\Models\User::where('id',$prod->vendor_id)->value('fullname')}}</p>
                                       </div>
                                     </div>
                                    

@@ -125,7 +125,7 @@
                       <div class="form-group">
                         <label>Child Category</label>
                         <select name="child_cat_id" class="form-control" id="child_select">
-                         
+                       
                         </select>
                       </div>
                     </div>
