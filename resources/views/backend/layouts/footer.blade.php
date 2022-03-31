@@ -43,5 +43,6 @@
 <script>
   setTimeout(() => {
     $('#alert').slideUp();
+    $('.alert').slideUp();
   }, 4000);
 </script>

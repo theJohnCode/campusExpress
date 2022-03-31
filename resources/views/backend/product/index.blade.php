@@ -65,10 +65,10 @@
                       <td>
                         <input name="toggle" value="{{ $product->id }}" type="checkbox" data-toggle="switchbutton" {{ $product->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
-                      <td>
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#productID{{$product->id}}" class="float-left btn btn-sm btn-outline-secondary" data-toggle="tooltip" title="view"  data-placement="bottom"><i class="fas fa-eye"></i></a>
-                        <a href="{{route('product.edit',$product->id)}}" class="float-left btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form class="float-right" action="{{route('product.destroy',$product->id)}}" method="post">
+                      <td class="row">
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#productID{{$product->id}}" class="col-md-4 btn btn-sm btn-outline-secondary" data-toggle="tooltip" title="view"  data-placement="bottom"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('product.edit',$product->id)}}" class="col-md-4 btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form class="col-md-4" action="{{route('product.destroy',$product->id)}}" method="post">
                         @csrf
                         @method('delete')
                         <a href="" data-id="{{$product->id}}" class="delBtn btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>

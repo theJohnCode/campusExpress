@@ -48,9 +48,9 @@
                       <td>
                         <input name="toggle" value="{{ $brand->id }}" type="checkbox" data-toggle="switchbutton" {{ $brand->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
-                      <td>
-                        <a href="{{route('brand.edit',$brand->id)}}" class="float-left btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form class="float-right" action="{{route('brand.destroy',$brand->id)}}" method="post">
+                      <td class="row">
+                        <a href="{{route('brand.edit',$brand->id)}}" class="col-md-4 btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form class="col-md-6" action="{{route('brand.destroy',$brand->id)}}" method="post">
                         @csrf
                         @method('delete')
                         <a href="" data-id="{{$brand->id}}" class="delBtn btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>

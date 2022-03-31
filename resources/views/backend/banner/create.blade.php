@@ -13,10 +13,10 @@
           <div class="col-md-12">
             <div class="col-12">
               @if ($errors->any())
-                <div class="alert aler-danger">
+                <div>
                   <ul style="list-style: none;">
                   @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
+                    <li class="alert alert-danger">{{$error}}</li>
                   @endforeach
                 </ul>
                 </div>

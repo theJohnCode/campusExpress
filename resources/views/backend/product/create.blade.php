@@ -14,10 +14,10 @@
           <div class="col-md-12">
             <div class="col-12">
               @if ($errors->any())
-                <div class="alert alert-danger">
+                <div>
                   <ul style="list-style: none;">
                   @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
+                    <li class="alert alert-danger">{{$error}}</li>
                   @endforeach
                 </ul>
                 </div>
@@ -218,7 +218,7 @@
            selected: selected
          },
          success: function (response) {
-           console.log(response.data);
+           //console.log(response.data);
            let option = `<option value=''> -- Child Category -- </option>`;
            if(response.status){
              $('#child_cat').removeClass('d-none');

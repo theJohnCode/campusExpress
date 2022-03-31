@@ -49,10 +49,10 @@
                       <td>
                         <input name="toggle" value="{{ $category->id }}" type="checkbox" data-toggle="switchbutton" {{ $category->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
-                      <td>
-                        <a href="{{route('category.edit',$category->id)}}" class="float-left btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                      <td class="row">
+                        <a href="{{route('category.edit',$category->id)}}" class="col-md-4 btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                         
-                        <form class="float-right" action="{{route('category.destroy',$category->id)}}" method="post">
+                        <form class="col-md-6" action="{{route('category.destroy',$category->id)}}" method="post">
                         @csrf
                         @method('delete')
                         <a href="" data-id="{{$category->id}}" class="delBtn btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>

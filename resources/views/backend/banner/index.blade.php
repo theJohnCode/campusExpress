@@ -55,9 +55,9 @@
                       <td>
                         <input name="toggle" value="{{ $banner->id }}" type="checkbox" data-toggle="switchbutton" {{ $banner->status == 'active' ? 'checked' : '' }} data-onlabel="Active" data-offlabel="Inactive" data-size="sm" data-onstyle="success" data-offstyle="danger">
                       </td>
-                      <td>
-                        <a href="{{route('banner.edit',$banner->id)}}" class="float-left btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form class="float-right" action="{{route('banner.destroy',$banner->id)}}" method="post">
+                      <td class="row">
+                        <a href="{{route('banner.edit',$banner->id)}}" class="col-md-4 btn btn-sm btn-outline-warning" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form class="col-md-6" action="{{route('banner.destroy',$banner->id)}}" method="post">
                         @csrf
                         @method('delete')
                         <a href="" data-id="{{$banner->id}}" class="delBtn btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" data-placement="bottom"><i class="fas fa-trash"></i></a>
