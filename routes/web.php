@@ -28,7 +28,7 @@ todo|--------------------------------------------------------------
 todo|--------------------------------------------------------------
 */ 
 
-Route::get('/',[IndexController::class,'home']);
+Route::get('/', [IndexController::class,'home'])->name('home');
 
 
 /* 
