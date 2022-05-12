@@ -13,6 +13,8 @@
 
             @yield('content')
         <!-- Body Wrapper End Here -->
+            @include('frontend.layouts.footer')
+            
             @include('frontend.layouts.script')
         </div>
     </body>

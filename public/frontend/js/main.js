@@ -1,12 +1,5 @@
 /*--------------------------------------------------
-Template Name: limupa;
-Description: limupa - Digital Products Store ECommerce Bootstrap 4 Template;
-Template URI:;
-Author Name:HasTech;
-Author URI:;
-Version: 1;
-Note: main.js, All Default Scripting Languages For This Theme Included In This File.
------------------------------------------------------
+
 		CSS INDEX
 		================
 		01. Li's Meanmenu
@@ -120,7 +113,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /* 07. Li's Product Activision
 /*----------------------------------------*/
 	$(".special-product-active").owlCarousel({
-		loop: true,
+		loop: ($('.special-product-active .item').length > 3),
 		nav: false,
 		dots: false,
 		autoplay: false,

@@ -1,4 +1,4 @@
-<div class="modal fade modal-wrapper" id="exampleModalCenter" >
+<div class="modal fade modal-wrapper" id="productID{{$product->id}}">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -11,12 +11,12 @@
                         <div class="product-details-left">
                             <div class="product-details-images slider-navigation-1">
                                 <div class="lg-image">
-                                    <img src="{{ asset('frontend/images/product/large-size/1.jpg')}}" alt="product image">
+                                    <img src="{{ $photo[0]}}" alt="{{$product->title}}">
                                 </div>
                                 <div class="lg-image">
                                     <img src="{{ asset('frontend/images/product/large-size/2.jpg')}}" alt="product image">
                                 </div>
-                                <div class="lg-image">
+                                {{-- <div class="lg-image">
                                     <img src="{{ asset('frontend/images/product/large-size/3.jpg')}}" alt="product image">
                                 </div>
                                 <div class="lg-image">
@@ -27,15 +27,21 @@
                                 </div>
                                 <div class="lg-image">
                                     <img src="{{ asset('frontend/images/product/large-size/6.jpg')}}" alt="product image">
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="product-details-thumbs slider-thumbs-1">                                        
-                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/1.jpg')}}" alt="product image thumb"></div>
-                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/2.jpg')}}" alt="product image thumb"></div>
-                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/3.jpg')}}" alt="product image thumb"></div>
-                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/4.jpg')}}" alt="product image thumb"></div>
-                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/5.jpg')}}" alt="product image thumb"></div>
-                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/6.jpg')}}" alt="product image thumb"></div>
+                                <div class="sm-image"><img src="{{ $photo[0]}}" alt="product image thumb">
+                                </div>
+                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/2.jpg')}}" alt="product image thumb">
+                                </div>
+                                {{-- <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/3.jpg')}}" alt="product image thumb">
+                                </div>
+                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/4.jpg')}}" alt="product image thumb">
+                                </div>
+                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/5.jpg')}}" alt="product image thumb">
+                                </div>
+                                <div class="sm-image"><img src="{{ asset('frontend/images/product/small-size/6.jpg')}}" alt="product image thumb">
+                                </div> --}}
                             </div>
                         </div>
                         <!--// Product Details Left -->
@@ -44,7 +50,7 @@
                     <div class="col-lg-7 col-md-6 col-sm-6">
                         <div class="product-details-view-content pt-60">
                             <div class="product-info">
-                                <h2>Today is a good day Framed poster</h2>
+                                <h2>{{ $product->title }}</h2>
                                 <span class="product-details-ref">Reference: demo_15</span>
                                 <div class="rating-box pt-20">
                                     <ul class="rating rating-with-review-item">
@@ -58,21 +64,22 @@
                                     </ul>
                                 </div>
                                 <div class="price-box pt-20">
-                                    <span class="new-price new-price-2">$57.98</span>
+                                    <span class="new-price new-price-2">{{ number_format($product->offer_price,2) }}</span>
                                 </div>
                                 <div class="product-desc">
                                     <p>
-                                        <span>100% cotton double printed dress. Black and white striped top and orange high waisted skater skirt bottom. Lorem ipsum dolor sit amet, consectetur adipisicing elit. quibusdam corporis, earum facilis et nostrum dolorum accusamus similique eveniet quia pariatur.
-                                        </span>
+                                        <span>{{ $product->description }}. </span>
                                     </p>
                                 </div>
+                                {{-- todo Change the products size --}}
                                 <div class="product-variants">
                                     <div class="produt-variants-size">
-                                        <label>Dimension</label>
-                                        <select class="nice-select">
-                                            <option value="1" title="S" selected="selected">40x60cm</option>
-                                            <option value="2" title="M">60x90cm</option>
-                                            <option value="3" title="L">80x120cm</option>
+                                        <label>Size</label>
+                                        <select class="size">
+                                            <option value="S" title="S" selected="selected">Small</option>
+                                            <option value="M" title="M">Medium</option>
+                                            <option value="L" title="L">Large</option>
+                                            <option value="XL" title="XL">Extra Large</option>
                                         </select>
                                     </div>
                                 </div>

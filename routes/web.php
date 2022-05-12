@@ -28,7 +28,8 @@ todo|--------------------------------------------------------------
 todo|--------------------------------------------------------------
 */ 
 
-Route::get('/', [IndexController::class,'home'])->name('home');
+Route::get('/', [IndexController::class,'home'])->name('index');
+Route::get('product-cat/{slug}', [IndexController::class,'productCategory'])->name('product.category');
 
 
 /* 
