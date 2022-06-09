@@ -30,6 +30,7 @@ todo|--------------------------------------------------------------
 
 Route::get('/', [IndexController::class,'home'])->name('index');
 Route::get('product-cat/{slug}', [IndexController::class,'productCategory'])->name('product.category');
+Route::get('product-details/{slug}/', [IndexController::class, 'productDetails'])->name('product.details');
 
 
 /* 

@@ -3,15 +3,15 @@
 @section('content')
     @include('frontend.components.breadcrumb')
     <div class="content-wraper pt-60 pb-60">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
                 <!-- Begin Li's Banner Area -->
-                <div class="single-banner shop-page-banner">
-                    <a href="#">
-                        <img src="{{ asset('frontend/images/bg-banner/2.jpg')}}" alt="Li's Static Banner">
-                    </a>
-                </div>
+                    <div class="single-banner shop-page-banner">
+                        <a href="#">
+                            <img src="{{ asset('frontend/images/bg-banner/2.jpg')}}" alt="Li's Static Banner">
+                        </a>
+                    </div>
                 <!-- Li's Banner Area End Here -->
                 <!-- shop-top-bar start -->
                 <div class="shop-top-bar mt-30">
@@ -61,7 +61,7 @@
                                         <div class="single-product-wrap">
                                             <div class="product-image">
                                                 @php
-                                                    $photo = explode(',',$product->photo)
+                                                    $photo = explode(',', $product->photo)
                                                 @endphp
                                                 <a href="#">
                                                     <img src="{{$photo[0]}}" alt="{{$product->title}}">
@@ -86,8 +86,8 @@
                                                     </div>
                                                     <h3><a class="product_name" href="#">{{ucfirst($product->title)}}</a></h3>
                                                     <div class="price-box">
-                                                        <span class="new-price">{{number_format($product->offer_price,2)}}</span>
-                                                        <span class="new-price text-danger"><del>{{number_format($product->price,2)}}</del></span>
+                                                        <span class="new-price">{{number_format($product->offer_price, 2)}}</span>
+                                                        <span class="new-price text-danger"><del>{{number_format($product->price, 2)}}</del></span>
                                                     </div>
                                                 </div>
                                                 <div class="add-actions">

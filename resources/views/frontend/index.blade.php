@@ -54,8 +54,7 @@
             @endphp
             @if (count($new) > 0)
         
-            <div class="row">
-                
+            <div class="row">            
                     <div class="special-product-active owl-carousel">
                         @foreach ($new as $product)
                         <div class="col-lg-12 item">
@@ -76,7 +75,7 @@
                                         <div class="product-review">
                                             <h5 class="manufacturer">
                                                 @php
-                                                    $brand =\App\Models\Brand::where('id',$product->brand_id)->value('title');
+                                                    $brand = \App\Models\Brand::where('id',$product->brand_id)->value('title');
                                                 @endphp
                                                 <a href="shop-left-sidebar.html">{{ $brand }}</a>
                                             </h5>
@@ -90,9 +89,9 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <h4><a class="product_name" href="single-product.html">{{ $product->title }}</a></h4>
+                                        <h4><a class="product_name" href="{{ route('product.details', $product->slug) }}">{{ $product->title }}</a></h4>
                                         <div class="price-box">
-                                            <span class="new-price">{{ number_format($product->offer_price,2) }}</span>
+                                            <span class="new-price">{{ number_format($product->offer_price, 2) }}</span>
                                         </div>
                                         <div class="countersection">
                                             <div class="li-countdown"></div>
