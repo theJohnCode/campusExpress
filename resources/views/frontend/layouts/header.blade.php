@@ -7,7 +7,7 @@
                 <div class="col-lg-3 col-md-4">
                     <div class="header-top-left">
                         <ul class="phone-wrap">
-                            <li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
+                            <li><span>Telephone Enquiry:</span><a href="#">(+234) 808 329 2538</a></li>
                         </ul>
                     </div>
                 </div>
@@ -18,12 +18,21 @@
                         <ul class="ht-menu">
                             <!-- Begin Setting Area -->
                             <li>
-                                <div class="ht-setting-trigger"><span>Setting</span></div>
+                                <div class="ht-setting-trigger" style="width: 50px; height: 50px; border-radius: 50%;"><img src="{{ asset('frontend/images/team/1.png') }}" style="width: inherit;
+                                    height: inherit;
+                                    border-radius: 50%;
+                                    border: 2px solid black;
+                                }" alt=""></div>
                                 <div class="setting ht-setting">
                                     <ul class="ht-setting-list">
-                                        <li><a href="login-register.html">My Account</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="login-register.html">Sign In</a></li>
+                                        @auth
+                                            <li><a href="login-register.html">My Account</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="checkout.html">Wishlist</a></li>
+                                            <li><a href="checkout.html">Logout</a></li>
+                                        @else
+                                            <li><a href="{{ route('user.auth') }}">Sign In</a></li>
+                                        @endauth
                                     </ul>
                                 </div>
                             </li>

@@ -41,6 +41,10 @@ todo|--------------------------------------------------------------
 
 Auth::routes(['register' => false]);
 
+// ? User Authentication
+Route::get('user/auth', [IndexController::class,'userAuth'])->name('user.auth');
+Route::post('user/login',[IndexController::class,'login'])->name('login.submit');
+Route::post('user/register',[IndexController::class,'register'])->name('register.submit');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
@@ -50,7 +54,7 @@ todo|--------------------------------------------------------------
 todo|--------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'admin', 'middlware' => 'auth'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function(){
     Route::get('/', [AdminController::class, 'admin'])->name('admin');
 
     // Banner Section
@@ -78,5 +82,25 @@ Route::group(['prefix' => 'admin', 'middlware' => 'auth'], function(){
 /* 
 todo|--------------------------------------------------------------
 !           ADMIN SECTION END
+todo|--------------------------------------------------------------
+*/
+
+
+
+
+
+/* 
+todo|--------------------------------------------------------------
+!           SELLER SECTION START
+todo|--------------------------------------------------------------
+*/
+
+Route::group(['prefix' => 'seller', 'middleware' => ['auth','seller']], function(){
+    Route::get('/', [AdminController::class, 'admin'])->name('seller');
+});
+
+/* 
+todo|--------------------------------------------------------------
+!           SELLER SECTION END
 todo|--------------------------------------------------------------
 */

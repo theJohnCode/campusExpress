@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             // Admin
             [
-                "fullname" => "John Admin",
+                "first_name" => "John",
+                "last_name" => "Admin",
                 "username" => "Admin",
                 "email" => "ifeanyichukwujohn70@gmail.com",
                 "password" => Hash::make('admin'),
@@ -27,16 +28,18 @@ class UsersTableSeeder extends Seeder
             ],
             // Vendor
             [
-                "fullname" => "John Vendor",
-                "username" => "Vendor",
-                "email" => "vendor@gmail.com",
-                "password" => Hash::make('vendor'),
-                "role" => "vendor",
+                "first_name" => "John",
+                "last_name" => "Seller",
+                "username" => "Seller",
+                "email" => "seller@gmail.com",
+                "password" => Hash::make('seller'),
+                "role" => "seller",
                 "status" => "active",
             ],
             // Customer
             [
-                "fullname" => "John Customer",
+                "first_name" => "John",
+                "last_name" => "Customer",
                 "username" => "Customer",
                 "email" => "customer@gmail.com",
                 "password" => Hash::make('customer'),

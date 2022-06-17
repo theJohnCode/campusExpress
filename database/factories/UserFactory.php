@@ -15,7 +15,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'fullname' => $this->faker->name(),
+            'first_name' => $this->faker->name(),
+            'last_name' => $this->faker->name(),
             'username' => $this->faker->username(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -23,7 +24,7 @@ class UserFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'photo' => $this->faker->imageUrl('60','60'),
             'address' => $this->faker->address(),
-            'role' => $this->faker->randomElement(['admin','vendor','customer']),
+            'role' => $this->faker->randomElement(['admin','seller','customer']),
             'status' => $this->faker->randomElement(['active','inactive']),
             'remember_token' => Str::random(10),
         ];

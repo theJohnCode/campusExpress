@@ -40,3 +40,9 @@
         <script src="{{ asset('frontend/js/scrollUp.min.js')}}"></script>
         <!-- Main/Activator js -->
         <script src="{{ asset('frontend/js/main.js')}}"></script>
+
+        <script>
+                setTimeout(() => {
+                       $('#alert').slideUp(); 
+                }, 4000);
+        </script>

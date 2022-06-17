@@ -10,6 +10,13 @@
             <!-- Begin Header Area -->
             @include('frontend.layouts.header')
             <!-- Header Area End Here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        @include('backend.layouts.notification')
+                    </div>
+                </div>
+            </div>
 
             @yield('content')
         <!-- Body Wrapper End Here -->

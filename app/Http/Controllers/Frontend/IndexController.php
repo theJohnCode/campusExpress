@@ -7,6 +7,9 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class IndexController extends Controller
 {
@@ -37,4 +40,32 @@ class IndexController extends Controller
         }
     }
 
+    public function userAuth()
+    {
+        return view('frontend.auth.auth');
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:4',
+        ]);
+        if(Auth::attempt(['email' => $request->email,'password' => $request->password, 'status' => 'active'])){
+            Session::put('user', $request->email);
+
+            if (Session::get('url.intended')) {
+                return Redirect::to(Session::get('url.intended'));
+            }else{
+                return redirect()->route('home')->with('success', 'Successfully login');
+            }
+        }else{
+            return back()->with('error','Invalid email or password');
+        }
+    }
+
+    public function register(Request $request)
+    {
+        dd($request->all());
+    }
 }
