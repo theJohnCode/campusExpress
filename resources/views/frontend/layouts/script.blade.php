@@ -46,3 +46,5 @@
                        $('#alert').slideUp(); 
                 }, 4000);
         </script>
+        @yield('scripts')
+        @yield('dashscript')

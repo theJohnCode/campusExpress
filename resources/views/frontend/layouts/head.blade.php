@@ -38,3 +38,6 @@
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
     <!-- Modernizr js -->
     <script src="{{ asset('frontend/js/vendor/modernizr-2.8.3.min.js')}}"></script>
+
+    @yield('styles')
+    @yield('dashboard')

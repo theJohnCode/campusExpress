@@ -26,10 +26,10 @@
                                 <div class="setting ht-setting">
                                     <ul class="ht-setting-list">
                                         @auth
-                                            <li><a href="login-register.html">My Account</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="checkout.html">Wishlist</a></li>
-                                            <li><a href="checkout.html">Logout</a></li>
+                                            <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
+                                            <li><a href="#">Checkout</a></li>
+                                            <li><a href="#">Wishlist</a></li>
+                                            <li><a href="{{ route('user.logout') }}">Logout</a></li>
                                         @else
                                             <li><a href="{{ route('user.auth') }}">Sign In</a></li>
                                         @endauth
@@ -239,16 +239,10 @@
                     <div class="hb-menu hb-menu-2 d-xl-block">
                         <nav>
                             <ul>
-                                <li class="dropdown-holder"><a href="index.html">Home</a>
-                                    <ul class="hb-dropdown">
-                                        <li><a href="index.html">Home One</a></li>
-                                        <li class="active"><a href="index-2.html">Home Two</a></li>
-                                        <li><a href="index-3.html">Home Three</a></li>
-                                        <li><a href="index-4.html">Home Four</a></li>
-                                    </ul>
+                                <li class="dropdown-holder"><a href="{{ route('home') }}">Home</a>
                                 </li>
                                 <li class="megamenu-holder"><a href="shop-left-sidebar.html">Shop</a>
-                                    <ul class="megamenu hb-megamenu">
+                                    {{-- <ul class="megamenu hb-megamenu">
                                         <li><a href="shop-left-sidebar.html">Shop Page Layout</a>
                                             <ul>
                                                 <li><a href="shop-3-column.html">Shop 3 Column</a></li>
@@ -279,26 +273,26 @@
                                                 <li><a href="single-product-affiliate.html">Single Product Affiliate</a></li>
                                             </ul>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
                                 </li>
                                 <li class="dropdown-holder"><a href="blog-left-sidebar.html">Blog</a>
                                     <ul class="hb-dropdown">
-                                        <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid View</a>
+                                        {{-- <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid View</a>
                                             <ul class="hb-dropdown hb-sub-dropdown">
                                                 <li><a href="blog-2-column.html">Blog 2 Column</a></li>
                                                 <li><a href="blog-3-column.html">Blog 3 Column</a></li>
                                                 <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
                                                 <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
                                             </ul>
-                                        </li>
-                                        <li class="sub-dropdown-holder"><a href="blog-list-left-sidebar.html">Blog List View</a>
+                                        </li> --}}
+                                        {{-- <li class="sub-dropdown-holder"><a href="blog-list-left-sidebar.html">Blog List View</a>
                                             <ul class="hb-dropdown hb-sub-dropdown">
                                                 <li><a href="blog-list.html">Blog List</a></li>
                                                 <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
                                                 <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
                                             </ul>
-                                        </li>
-                                        <li class="sub-dropdown-holder"><a href="blog-details-left-sidebar.html">Blog Details</a>
+                                        </li> --}}
+                                        {{-- <li class="sub-dropdown-holder"><a href="blog-details-left-sidebar.html">Blog Details</a>
                                             <ul class="hb-dropdown hb-sub-dropdown">
                                                 <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
                                                 <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
@@ -310,13 +304,13 @@
                                                 <li><a href="blog-video-format.html">Blog Video Format</a></li>
                                                 <li><a href="blog-gallery-format.html">Blog Gallery Format</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </li>
                                 <li class="megamenu-static-holder"><a href="index.html">Pages</a>
                                     <ul class="megamenu hb-megamenu">
                                         <li><a href="blog-left-sidebar.html">Blog Layouts</a>
-                                            <ul>
+                                            {{-- <ul>
                                                 <li><a href="blog-2-column.html">Blog 2 Column</a></li>
                                                 <li><a href="blog-3-column.html">Blog 3 Column</a></li>
                                                 <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
@@ -324,7 +318,7 @@
                                                 <li><a href="blog-list.html">Blog List</a></li>
                                                 <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
                                                 <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
-                                            </ul>
+                                            </ul> --}}
                                         </li>
                                         <li><a href="blog-details-left-sidebar.html">Blog Details Pages</a>
                                             <ul>
@@ -337,7 +331,7 @@
                                         </li>
                                         <li><a href="index.html">Other Pages</a>
                                             <ul>
-                                                <li><a href="login-register.html">My Account</a></li>
+                                                <li><a href="{{ route('user.dashboard') }}">My Account</a></li>
                                                 <li><a href="checkout.html">Checkout</a></li>
                                                 <li><a href="compare.html">Compare</a></li>
                                                 <li><a href="wishlist.html">Wishlist</a></li>
@@ -358,7 +352,7 @@
                                 <li><a href="contact.html">Contact</a></li>
                                 <!-- Begin Header Bottom Menu Information Area -->
                                 <li class="hb-info f-right p-0 d-sm-none d-lg-block">
-                                    <span>6688 London, Greater London BAS 23JK, UK</span>
+                                    <span>Ifite Awka, Anambra State Nigeria</span>
                                 </li>
                                 <!-- Header Bottom Menu Information Area End Here -->
                             </ul>

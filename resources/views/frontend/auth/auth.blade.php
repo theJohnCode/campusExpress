@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mt-10 mb-20 text-left text-md-right">
-                                    <a href="#"> Forgotten pasward?</a>
+                                    <a href="#"> Forgotten password?</a>
                                 </div>
                                 <div class="col-md-12">
                                     <button class="register-button mt-0">Login</button>
@@ -63,28 +63,35 @@
                             <h4 class="login-title">Register</h4>
                             <div class="row">
                                 <div class="col-md-6 col-12 mb-20">
-                                    <label>First Name</label>
-                                    <input class="mb-0" type="text" name="first_name" placeholder="First Name">
+                                    <label>First Name <span class="text-danger">*</span></label>
+                                    <input class="mb-0" type="text" name="first_name" placeholder="First Name" value="{{ old('first_name') }}">
                                     @error('first_name')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 col-12 mb-20">
-                                    <label>Last Name</label>
-                                    <input class="mb-0" type="text" name="last_name" placeholder="Last Name">
+                                    <label>Last Name <span class="text-danger">*</span></label>
+                                    <input class="mb-0" type="text" name="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
                                     @error('last_name')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div class="col-md-12 mb-20">
-                                    <label>Email Address*</label>
-                                    <input class="mb-0" type="email" name="email" placeholder="Email Address">
+                                <div class="col-md-6 mb-20">
+                                    <label>Email Address <span class="text-danger">*</span></label>
+                                    <input class="mb-0" type="email" name="email" placeholder="Email Address" value="{{ old('email') }}">
                                     @error('email')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-20">
-                                    <label>Password</label>
+                                    <label>Username</label>
+                                    <input class="mb-0" type="text" name="username" placeholder="Username" value="{{ old('username') }}">
+                                    @error('username')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mb-20">
+                                    <label>Password <span class="text-danger">*</span></label>
                                     <input class="mb-0" type="password" name="password" placeholder="Password">
                                     @error('password')
                                         <p class="text-danger">{{ $message }}</p>
@@ -92,8 +99,8 @@
                                 </div>
                                 <div class="col-md-6 mb-20">
                                     <label>Confirm Password</label>
-                                    <input class="mb-0" type="password" name="confirm_password" placeholder="Confirm Password">
-                                    @error('confirm_password')
+                                    <input class="mb-0" type="password" name="password_confirmation" placeholder="Confirm Password">
+                                    @error('password_confirmation')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>

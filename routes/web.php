@@ -28,8 +28,8 @@ todo|--------------------------------------------------------------
 todo|--------------------------------------------------------------
 */ 
 
-Route::get('/', [IndexController::class,'home'])->name('index');
-Route::get('product-cat/{slug}', [IndexController::class,'productCategory'])->name('product.category');
+Route::get('/', [IndexController::class,'home'])->name('home');
+Route::get('product-category/{slug}', [IndexController::class,'productCategory'])->name('product.category');
 Route::get('product-details/{slug}/', [IndexController::class, 'productDetails'])->name('product.details');
 
 
@@ -45,7 +45,9 @@ Auth::routes(['register' => false]);
 Route::get('user/auth', [IndexController::class,'userAuth'])->name('user.auth');
 Route::post('user/login',[IndexController::class,'login'])->name('login.submit');
 Route::post('user/register',[IndexController::class,'register'])->name('register.submit');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('user/logout',[IndexController::class,'logout'])->name('user.logout');
+
+Route::get('/home', [HomeController::class, 'index'])->name('index');
 
 
 /* 
@@ -102,5 +104,22 @@ Route::group(['prefix' => 'seller', 'middleware' => ['auth','seller']], function
 /* 
 todo|--------------------------------------------------------------
 !           SELLER SECTION END
+todo|--------------------------------------------------------------
+*/
+
+
+/* 
+todo|--------------------------------------------------------------
+!           USER SECTION START
+todo|--------------------------------------------------------------
+*/
+
+Route::group(['prefix' => 'user'], function(){
+    Route::get('/dashboard', [IndexController::class, 'userAccount'])->name('user.dashboard');
+});
+
+/* 
+todo|--------------------------------------------------------------
+!           USER SECTION END
 todo|--------------------------------------------------------------
 */
